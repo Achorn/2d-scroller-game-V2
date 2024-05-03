@@ -7,7 +7,9 @@ export default class Player {
     this.y = this.game.height - this.height;
     this.image = document.getElementById("player");
   }
-  update() {
+  update(input) {
+    if (input.includes("ArrowRight")) this.x++;
+    if (input.includes("ArrowLeft")) this.x--;
     // this.x++;
   }
   draw(context) {

@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
       this.input = new InputHandler();
     }
     update() {
-      this.player.update();
+      this.player.update(this.input.keys);
     }
     draw(context) {
       this.player.draw(context);
