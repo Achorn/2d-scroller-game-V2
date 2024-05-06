@@ -6,7 +6,7 @@ import { FlyingEnemy, GroundEnemy, ClimbingEnemy } from "./enemies.js";
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
-  canvas.width = 500;
+  canvas.width = 800;
   canvas.height = 500;
 
   class Game {
@@ -18,11 +18,14 @@ window.addEventListener("load", () => {
       this.maxSpeed = 3;
       this.background = new Background(this);
       this.player = new Player(this);
-      this.input = new InputHandler();
+      this.input = new InputHandler(this);
 
       this.enemies = [];
       this.enemyTimer = 0;
       this.enemyInterval = 1000;
+
+      this.debug = true;
+      this.score = 0;
     }
     update(deltaTime) {
       this.background.update();
