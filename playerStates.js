@@ -1,4 +1,4 @@
-import { Dust } from "./particles.js";
+import { Dust, Fire } from "./particles.js";
 
 const states = {
   SITTING: 0,
@@ -44,6 +44,13 @@ export class Running extends State {
     this.game.player.maxFrame = 8;
   }
   handleInput(input) {
+    this.game.particles.unshift(
+      new Dust(
+        this.game,
+        this.game.player.x + this.game.player.width * 0.3,
+        this.game.player.y + this.game.player.height
+      )
+    );
     if (input.includes("ArrowUp")) {
       this.game.player.setState(states.JUMPING, 1);
     }
@@ -103,6 +110,13 @@ export class Rolling extends State {
     this.game.player.maxFrame = 6;
   }
   handleInput(input) {
+    this.game.particles.unshift(
+      new Fire(
+        this.game,
+        this.game.player.x + this.game.player.width * 0.3,
+        this.game.player.y + this.game.player.height * 0.5
+      )
+    );
     if (!input.includes("z") && this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (!input.includes("z") && !this.game.player.onGround()) {
