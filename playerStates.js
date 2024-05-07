@@ -151,8 +151,8 @@ export class Diving extends State {
     this.game.particles.unshift(
       new Fire(
         this.game,
-        this.game.player.x + this.game.player.width * 0.3,
-        this.game.player.y + this.game.player.height * 0.5
+        this.game.player.x + this.game.player.width * 0.1,
+        this.game.player.y + this.game.player.height
       )
     );
     if (this.game.player.onGround()) {
@@ -168,6 +168,24 @@ export class Diving extends State {
       }
     } else if (!input.includes("z") && this.game.player.onGround()) {
       this.game.player.setState(states.ROLLING, 2);
+    }
+  }
+}
+
+export class Hit extends State {
+  constructor(game) {
+    super("HIT", game);
+  }
+  enter() {
+    this.game.player.frameX = 0;
+    this.game.player.maxFrame = 10;
+    this.game.player.frameY = 4;
+  }
+  handleInput(input) {
+    if (this.game.player.frameX >= 10 && this.game.player.onGround()) {
+      this.game.player.setState(states.RUNNING, 1);
+    } else if (this.game.player.framX >= 10 && !this.game.player.onGround()) {
+      this.game.player.setState(states.FALLING, 2);
     }
   }
 }

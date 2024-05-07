@@ -23,6 +23,7 @@ window.addEventListener("load", () => {
       this.UI = new UI(this);
       this.enemies = [];
       this.particles = [];
+      this.collisions = [];
       this.enemyTimer = 0;
       this.enemyInterval = 1000;
       this.debug = false;
@@ -54,7 +55,13 @@ window.addEventListener("load", () => {
       });
       if (this.particles.length > this.maxParticles)
         this.particles = this.particles.slice(0, this.maxParticles);
+      // handle collisions
+      this.collisions.forEach((collision, index) => {
+        collision.update(deltaTime);
+        if (collision.markedForDeletion) this.collisions.splice(index, 1);
+      });
     }
+
     draw(context) {
       this.background.draw(context);
       this.enemies.forEach((enemy) => {
@@ -63,6 +70,7 @@ window.addEventListener("load", () => {
 
       this.player.draw(context);
       this.particles.forEach((particle) => particle.draw(context));
+      this.collisions.forEach((collision) => collision.draw(context));
       this.UI.draw(context);
     }
     addEnemy() {
