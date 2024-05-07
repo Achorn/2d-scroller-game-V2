@@ -61,8 +61,8 @@ window.addEventListener("load", () => {
         enemy.draw(context);
       });
 
-      this.particles.forEach((particle) => particle.draw(context));
       this.player.draw(context);
+      this.particles.forEach((particle) => particle.draw(context));
       this.UI.draw(context);
     }
     addEnemy() {
