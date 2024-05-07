@@ -24,16 +24,22 @@ window.addEventListener("load", () => {
       this.enemies = [];
       this.particles = [];
       this.collisions = [];
+      this.maxParticles = 50;
       this.enemyTimer = 0;
       this.enemyInterval = 1000;
       this.debug = false;
       this.score = 0;
       this.fontColor = "black";
+      this.time = 0;
+      this.maxTime = 10000;
+
+      this.gameOver = false;
       this.player.currentState = this.player.states[0];
       this.player.currentState.enter();
-      this.maxParticles = 50;
     }
     update(deltaTime) {
+      this.time += deltaTime;
+      if (this.time > this.maxTime) this.gameOver = true;
       this.background.update();
       this.player.update(this.input.keys, deltaTime);
       // handle Enemies
@@ -92,7 +98,7 @@ window.addEventListener("load", () => {
     game.update(deltaTime);
     game.draw(ctx);
 
-    requestAnimationFrame(animate);
+    if (!game.gameOver) requestAnimationFrame(animate);
   }
   animate(lastTime);
 });

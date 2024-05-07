@@ -9,11 +9,11 @@ export class CollisionAnimation {
     this.width = this.spriteWidth * this.sizeModifier;
     this.height = this.spriteHeight * this.sizeModifier;
     this.x = x - this.width * 0.5;
-    this.y = y - this.width * 0.5;
+    this.y = y - this.height * 0.5;
     this.frameX = 0;
     this.maxFrame = 4;
     this.markedForDeletion = false;
-    this.fps = 20;
+    this.fps = Math.random() * 10 + 5;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
   }
