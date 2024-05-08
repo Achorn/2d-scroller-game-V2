@@ -117,7 +117,6 @@ export default class Player {
         enemy.markedForDeletion = true;
         if (
           this.currentState === this.states[4] ||
-          this.currentState === this.states[7] ||
           this.currentState === this.states[5]
         ) {
           this.game.score++;
@@ -125,13 +124,15 @@ export default class Player {
             new FloatingMessage("+1", enemy.x, enemy.y, "white")
           );
         } else {
-          this.setState(6, 0);
-          this.game.lives--;
-          this.game.score -= 5;
-          this.game.floatingMessages.push(
-            new FloatingMessage("-5", enemy.x, enemy.y, "red")
-          );
-          if (this.game.lives == 0) this.game.gameOver = true;
+          if (this.currentState != this.states[6]) {
+            this.setState(6, 0);
+            this.game.lives--;
+            this.game.score -= 5;
+            this.game.floatingMessages.push(
+              new FloatingMessage("-5", enemy.x, enemy.y, "red")
+            );
+            if (this.game.lives == 0) this.game.gameOver = true;
+          }
         }
       }
     });
