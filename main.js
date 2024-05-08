@@ -60,7 +60,7 @@ window.addEventListener("load", () => {
         if (particle.markedForDeletion) this.particles.splice(index, 1);
       });
       if (this.particles.length > this.maxParticles)
-        this.particles = this.particles.slice(0, this.maxParticles);
+        this.particles.length = this.maxParticles;
       // handle collisions
       this.collisions.forEach((collision, index) => {
         collision.update(deltaTime);
@@ -74,9 +74,9 @@ window.addEventListener("load", () => {
         enemy.draw(context);
       });
 
-      this.player.draw(context);
       this.particles.forEach((particle) => particle.draw(context));
       this.collisions.forEach((collision) => collision.draw(context));
+      this.player.draw(context);
       this.UI.draw(context);
     }
     addEnemy() {
