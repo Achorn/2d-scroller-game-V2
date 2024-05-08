@@ -122,12 +122,15 @@ export default class Player {
         ) {
           this.game.score++;
           this.game.floatingMessages.push(
-            new FloatingMessage("+1", enemy.x, enemy.y, 0, 0)
+            new FloatingMessage("+1", enemy.x, enemy.y, "white")
           );
         } else {
           this.setState(6, 0);
           this.game.lives--;
           this.game.score -= 5;
+          this.game.floatingMessages.push(
+            new FloatingMessage("-5", enemy.x, enemy.y, "red")
+          );
           if (this.game.lives == 0) this.game.gameOver = true;
         }
       }
