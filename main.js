@@ -97,6 +97,10 @@ window.addEventListener("load", () => {
       }
       this.enemies.push(new FlyingEnemy(this));
     }
+    reset() {
+      this.player.x = 0;
+      this.player.y = this.game.height - this.height - this.game.groundMargin;
+    }
   }
   const game = new Game(canvas.width, canvas.height);
 
