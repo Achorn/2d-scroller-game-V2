@@ -23,11 +23,11 @@ export default class Player {
     this.frameX = 0;
     this.frameY = 0;
     this.maxFrame = 5;
-    this.fps = 20;
+    this.fps = 15;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
     this.speed = 0;
-    this.maxSpeed = 6;
+    this.maxSpeed = 3;
     this.states = [
       new Sitting(this.game),
       new Running(this.game),
@@ -40,7 +40,8 @@ export default class Player {
     this.currentState = null;
   }
   update(input, deltaTime) {
-    this.checkCollisions();
+    // TODO uncomment check collisions
+    // this.checkCollisions();
     this.currentState.handleInput(input);
     // Horizontal movement
     this.x += this.speed;
@@ -50,7 +51,7 @@ export default class Player {
       input.includes("ArrowLeft") &&
       this.currentState !== this.states[6]
     )
-      this.speed = -this.maxSpeed;
+      this.speed = -this.maxSpeed - 1;
     else this.speed = 0;
     if (this.x < 0) this.x = 0;
     if (this.x > this.game.width - this.width)
