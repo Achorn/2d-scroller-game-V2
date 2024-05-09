@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
       this.winningScore = 40;
       this.fontColor = "white";
       this.time = 0;
-      this.maxTime = 30000;
+      this.maxTime = 1000000;
       this.gameOver = false;
       this.lives = 5;
       this.player.currentState = this.player.states[0];
@@ -41,7 +41,7 @@ window.addEventListener("load", () => {
     }
     update(deltaTime) {
       this.time += deltaTime;
-      if (this.time > this.maxTime) this.gameOver = true;
+      if (this.time >= this.maxTime) this.gameOver = true;
 
       this.background.update();
       this.player.update(this.input.keys, deltaTime);

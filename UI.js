@@ -20,7 +20,11 @@ export class UI {
 
     // timer
     context.font = this.fontSize + 0.8 + "px " + this.fontFamily;
-    context.fillText("Time: " + (this.game.time * 0.001).toFixed(1), 20, 80);
+    context.fillText(
+      "Time: " + ((this.game.maxTime - this.game.time) * 0.001).toFixed(0),
+      20,
+      80
+    );
     // Lives
 
     for (let i = 0; i < this.game.lives; i++) {

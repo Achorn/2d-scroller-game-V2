@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
+}
+html {
+  background-color: rgb(44, 44, 57);
 }
 
 #canvas1 {
