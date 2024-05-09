@@ -50,13 +50,13 @@ export class Running extends State {
     this.game.player.maxFrame = 7;
   }
   handleInput(input) {
-    // this.game.particles.unshift(
-    //   new Dust(
-    //     this.game,
-    //     this.game.player.x + this.game.player.width * 0.3,
-    //     this.game.player.y + this.game.player.height
-    //   )
-    // );
+    this.game.particles.unshift(
+      new Dust(
+        this.game,
+        this.game.player.x + this.game.player.width * 0.3,
+        this.game.player.y + this.game.player.height
+      )
+    );
     if (input.includes("ArrowUp")) {
       this.game.player.setState(states.JUMPING, 1);
     }

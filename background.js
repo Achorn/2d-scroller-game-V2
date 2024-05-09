@@ -9,8 +9,12 @@ class Layer {
     this.y = 0;
   }
   update() {
-    if (this.x < -this.width) this.x = 0;
-    else this.x -= this.game.speed * this.speedModifier;
+    if (this.x < -this.width) {
+      let dif = this.x + this.width;
+      console.log(dif);
+      this.x = dif;
+    }
+    this.x -= this.game.speed * this.speedModifier;
   }
   draw(context) {
     context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -46,14 +50,14 @@ export class Background {
       this.game,
       this.width,
       this.height,
-      0.7,
+      0.6,
       this.layer2image
     );
     this.layer3 = new Layer(
       this.game,
       this.width,
       this.height,
-      0.86,
+      0.8,
       this.layer3image
     );
     this.layer4 = new Layer(
