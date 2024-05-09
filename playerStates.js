@@ -35,7 +35,10 @@ export class Sitting extends State {
     if (input.includes("ArrowLeft") || input.includes("ArrowRight")) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (input.includes("z")) {
-      this.game.player.setState(states.ROLLING, 1.5);
+      this.game.player.setState(states.ROLLING, 2);
+    }
+    if (input.includes("ArrowUp")) {
+      this.game.player.setState(states.JUMPING, 1);
     }
   }
 }
@@ -60,10 +63,14 @@ export class Running extends State {
     if (input.includes("ArrowUp")) {
       this.game.player.setState(states.JUMPING, 1);
     }
-    if (input.includes("ArrowDown")) {
+    if (
+      input.includes("ArrowDown") &&
+      !input.includes("ArrowLeft") &&
+      !input.includes("ArrowRight")
+    ) {
       this.game.player.setState(states.SITTING, 0);
     } else if (input.includes("z")) {
-      this.game.player.setState(states.ROLLING, 1.5);
+      this.game.player.setState(states.ROLLING, 2);
     }
   }
 }
@@ -85,7 +92,7 @@ export class Jumping extends State {
     if (this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
     } else if (input.includes("z")) {
-      this.game.player.setState(states.ROLLING, 1.5);
+      this.game.player.setState(states.ROLLING, 2);
     } else if (input.includes("ArrowDown")) {
       this.game.player.setState(states.DIVING, 0);
     }
@@ -173,7 +180,7 @@ export class Diving extends State {
         );
       }
     } else if (!input.includes("z") && this.game.player.onGround()) {
-      this.game.player.setState(states.ROLLING, 1.5);
+      this.game.player.setState(states.ROLLING, 2);
     }
   }
 }

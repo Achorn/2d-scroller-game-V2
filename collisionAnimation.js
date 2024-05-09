@@ -13,7 +13,7 @@ export class CollisionAnimation {
     this.frameX = 0;
     this.maxFrame = 4;
     this.markedForDeletion = false;
-    this.fps = Math.random() * 10 + 5;
+    this.fps = Math.random() * 15 + 5;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
   }

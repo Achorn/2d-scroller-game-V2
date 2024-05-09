@@ -1,5 +1,6 @@
 class Layer {
-  constructor(game, width, height, speedModifier, image) {
+  constructor(game, width, height, speedModifier, image, blur) {
+    this.blur = blur || 0;
     this.game = game;
     this.width = width;
     this.height = height;
@@ -16,6 +17,8 @@ class Layer {
     this.x -= this.game.speed * this.speedModifier;
   }
   draw(context) {
+    // context.save();
+    // context.filter = `blur(${this.blur}px)`;
     context.drawImage(this.image, this.x, this.y, this.width, this.height);
     context.drawImage(
       this.image,
@@ -24,6 +27,7 @@ class Layer {
       this.width,
       this.height
     );
+    // context.restore();
   }
 }
 
@@ -43,14 +47,16 @@ export class Background {
       this.width,
       this.height,
       0.3,
-      this.layer1image
+      this.layer1image,
+      8
     );
     this.layer2 = new Layer(
       this.game,
       this.width,
       this.height,
       0.6,
-      this.layer2image
+      this.layer2image,
+      4
     );
     this.layer3 = new Layer(
       this.game,

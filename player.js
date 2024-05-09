@@ -23,7 +23,7 @@ export default class Player {
     this.frameX = 0;
     this.frameY = 0;
     this.maxFrame = 5;
-    this.fps = 15;
+    this.fps = 18;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
     this.speed = 0;
@@ -41,7 +41,7 @@ export default class Player {
   }
   update(input, deltaTime) {
     // TODO uncomment check collisions
-    // this.checkCollisions();
+    this.checkCollisions();
     this.currentState.handleInput(input);
     // Horizontal movement
     this.x += this.speed;

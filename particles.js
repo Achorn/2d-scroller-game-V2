@@ -17,12 +17,12 @@ class Particle {
 export class Dust extends Particle {
   constructor(game, x, y) {
     super(game);
-    this.size = Math.random() * 10 + 10;
-    this.x = x;
+    this.size = Math.random() * 5 + 5;
+    this.x = x + Math.random() * 20;
     this.y = y;
     this.speedX = Math.random();
     this.speedY = Math.random();
-    this.color = "rgba(0,0,0,0.2";
+    this.color = "rgba(82,79,72,0.2)";
   }
   draw(context) {
     context.beginPath();
